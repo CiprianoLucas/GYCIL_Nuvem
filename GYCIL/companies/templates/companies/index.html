@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}
+  Empresas
+{% endblock %}
+{% load static %}
+{% block head %}
+{% endblock %}
+
+{% block content %}
+  <h2 class="mb-3 text-center">Empresas</h2>
+  <hr />
+  <div class="row d-flex justify-content-center ms-1 me-1">
+    {% for company in companies %}
+      <div class="col-lg-4">
+        <div class="card mb-4 box-shadow">
+          <div class="card-body">
+            {% if company.logo %}
+              <img src="{{ company.logo.url }}" height="50" width="50" alt="{{ company.fantasy_name }}" class="imf-fluid rounded" />
+            {% else %}
+              <img src="{% static 'base/img/logo.png' %}" alt="{{ company.fantasy_name }}" height="50" width="50" alt="{{ company.fantasy_name }}" class="imf-fluid rounded" />
+            {% endif %}
+            <h3>{{ company.fantasy_name }}</h3>
+            <p>{{ company.city }}</p>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+
+
+
+    {% if companies.paginator.num_pages > 1 %}
+      <nav aria-label="Paginação da página">
+        <ul class="pagination justify-content-end">
+          {% if companies.has_previous %}
+            <li class="page-item">
+              <a href="?page={{ companies.previous_page_number }}&q={{ request.GET.q }}" class="page-link" aria-label="Anterior">&laquo;</a>
+            </li>
+          {% endif %}
+          <li class="page-item active">
+            <span class="page-link">{{ companies.number }}</span>
+          </li>
+          {% if companies.has_next %}
+            <li class="page-item">
+              <a href="?page={{ companies.next_page_number }}&q={{ request.GET.q }}" class="page-link" aria-label="Próximo">&raquo;</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+  </div>
+{% endblock %}

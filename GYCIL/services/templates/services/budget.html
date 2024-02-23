@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Cadastro de Orçamento
+{% endblock %}
+{% block head %}
+  {% comment %} <script src="{% static 'services/js/budget.js' %}"></script> {% endcomment %}
+  {% endblock %}
+  {% block content %}
+  <div class="m-3">
+    <form action="{{ form_action }}" method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+      <div class="col-lg-6">{{ form.price|as_crispy_field }}</div>
+      <div class="col-lg-6">{{ form.date|as_crispy_field }}</div>
+      <div class="col-lg-6">{{ form.description|as_crispy_field }}</div>
+      <div class="col-lg-6">{{ form.hours_service|as_crispy_field }}</div>
+      <button type="submit" class="btn btn-primary mt-5">Enviar Orçamento</button>
+    </form>
+  </div>
+
+
+
+  {% endblock %}

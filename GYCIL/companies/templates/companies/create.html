@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+load
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Cadastro de Empresa
+{% endblock %}
+{% block head %}
+  <script src="{% static 'companies/js/create.js' %}"></script>
+{% endblock %}
+{% block content %}
+  <div class="m-3">
+    <form action="{{ form_action }}" method="post" enctype="multipart/form-data" novalidate >
+      {% csrf_token %}
+      <div class="row mb-3">
+        <div class="col-lg-6">{{ user_form.username|as_crispy_field }}</div>
+        <div class="col-lg-6">{{ company_form.fantasy_name|as_crispy_field }}</div>
+        <div class="col-lg-6">{{ company_form.representative|as_crispy_field }}</div>
+        <div class="col-lg-6">{{ company_form.cnpj|as_crispy_field }}</div>
+      </div>
+      <hr>
+      <div class="row mb-3">
+        <div class="col-lg-3">{{ company_form.zipcode|as_crispy_field }}</div>
+        <div class="col-lg-6">{{ company_form.street|as_crispy_field }}</div>
+        <div class="col-lg-3">{{ company_form.number|as_crispy_field }}</div>
+        <div class="col-lg-4">{{ company_form.city|as_crispy_field }}</div>
+        <div class="col-lg-4">{{ company_form.state|as_crispy_field }}</div>
+      </div>
+      <hr>
+      <div class="row mb-3">
+        <div class="col-lg-6">{{ company_form.phone|as_crispy_field }}</div>
+        <div class="col-lg-6">{{ user_form.email|as_crispy_field }}</div>
+        <div class="col-lg-4">{{ company_form.logo|as_crispy_field }}</div>
+        <div class="col-lg-4">{{ company_form.categories|as_crispy_field }}</div>
+      </div>
+      <hr>
+      <div class="row mb-3">
+        <div class="col-lg-6">{{ user_form.password|as_crispy_field }}</div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-5">Cadastrar</button>
+    </form>
+  </div>
+{% endblock %}
