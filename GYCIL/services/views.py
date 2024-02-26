@@ -7,20 +7,38 @@ from companies.models import Company
 from django.db import transaction
 from django.db.models import Q
 from django.http import JsonResponse
-from .forms import BudgetForm
+from .forms import BudgetForm, ServiceForm
 from django.utils.text import slugify
+from clients.models import Client
 
 # Create your views here.
 
 def index(request):
     
+    user = request.user
+    if user.username:
+        if Client.objects.filter(user=user).exists():
+            client = get_object_or_404(Client, user=user) 
+            user_type = "client"
+            services = Service.objects.filter(client=client)
+        else:
+            company = get_object_or_404(Company, user=user)
+            budgets = Budget.objects.filter(company=company)
+            
+            user_type = "company"
+            services = Service.objects.filter(
+                                    Q(city=company.city) &
+                                    Q(state=company.state) &
+                                    Q(category__in=company.categories.all())
+                                      ).exclude(
+                                          Q(companies_refused=company) |
+                                          Q(id__in=[budget.service.id for budget in budgets])
+                                          )
+    else:
+        return redirect("login:index")
+    
     form_action = reverse("services:index")
-    services = Service.objects.order_by("-id")
-    user_id = request.user.id
-    if user_id:
-        company = Company.objects.filter(id=user_id)
-        categories_company = company.categories
-
+            
     paginator = Paginator(services, 30)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -31,7 +49,8 @@ def index(request):
 
     context = {
         "services": page_obj,
-        "form_action": form_action
+        "form_action": form_action,
+        "user_type": user_type
     }
 
     return render(request, "services/index.html", context)
@@ -54,7 +73,11 @@ def search(request, q):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     
-    context = { "services": page_obj }
+    context = {
+        "services": page_obj,
+        "user_type": "company"
+        }
+    
     
     return render(request, "services/index.html", context)
 
@@ -69,40 +92,35 @@ def refuse(request, id):
     
     return redirect("services:index")
 
-def my_services_client(request):
-    form_action = reverse("services:my_services_client")
-    services = Service.objects.order_by("-id")
-    # user_id = request.user.id
-    # if user_id:
-    #     company = Company.objects.filter(id=user_id)
-    #     categories_company = company.categories
+def my_services(request):
+    
+    user = request.user
+    if user.username:
+        if Client.objects.filter(user=user).exists():
+            return redirect("services:index")
+        else:
+            company = get_object_or_404(Company, user=user)
+            budgets = Budget.objects.filter(company=company)    
+            user_type = "company"
+            services = Service.objects.filter(id__in=[budget.service.id for budget in budgets]) \
+                                      .exclude(companies_refused=company)
+    else:
+        return redirect("login:index")
+    
+    form_action = reverse("services:my_services")
     
     paginator = Paginator(services, 30)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
+    
+    for service in page_obj:
+        name = service.client.name.split()
+        service.client.name = name[0] + " " + name[1][:2] + "***"
 
     context = {
         "services": page_obj,
-        "form_action": form_action
-    }
-
-    return render(request, "services/index.html", context)
-
-def my_services_company(request):
-    form_action = reverse("services:my_services_company")
-    services = Service.objects.order_by("-id")
-    user_id = request.user.id
-    if user_id:
-        company = Company.objects.filter(id=user_id)
-        categories_company = company.categories
-
-    paginator = Paginator(services, 30)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-
-    context = {
-        "services": page_obj,
-        "form_action": form_action
+        "form_action": form_action,
+        "user_type": user_type
     }
 
     return render(request, "services/index.html", context)
@@ -149,7 +167,7 @@ def descriptions(request, id):
 
 def budget(request, id):
     
-    company = get_object_or_404(Company, pk=2)     
+    company = get_object_or_404(Company, user=request.user)     
     service = get_object_or_404(Service, pk=id)
     slug = slugify(f"{service.id}_{company.fantasy_name}")
     
@@ -179,6 +197,42 @@ def budget(request, id):
     form = BudgetForm(instance=budget)   
     context = {
     'form': form,
+    'user_type': 'company'
     }
         
     return render(request, 'services/budget.html', context)
+
+def create(request):
+    client = get_object_or_404(Client, user=request.user)
+        
+    if request.method == 'POST':
+        form = ServiceForm(request.POST)
+
+        if form.is_valid():
+            form.instance.client = client
+            form.save()
+            messages.success(request, 'Orçamento cadastrado')
+            return redirect('services:index')
+        
+        context = {
+        'form': form,
+        'user_type': 'client'
+        }
+        
+        return render(request, 'services/budget.html', context)
+            
+    
+    form = ServiceForm(initial={
+        'street': client.street,
+        'city': client.city,
+        'state': client.state,
+        'number': client.number,
+        'cep': client.zipcode,
+        }) 
+ 
+    context = {
+    'form': form,
+    'user_type': 'client'
+    }
+        
+    return render(request, 'services/create.html', context)

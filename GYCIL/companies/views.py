@@ -5,9 +5,22 @@ from .forms import CompanyForm, UserForm
 from django.contrib import messages
 from django.db.models import Q
 from .models import Company
+from clients.models import Client
 
 # Create your views here.
 def index(request):
+    
+    user = request.user
+    
+    if user.username:
+        if Client.objects.filter(user=user).exists():
+            # login_user = Client.objects.filter(user=user)
+            user_type = "client"
+        else:
+            return redirect("home")
+    else:
+        return redirect("home")
+    
     companies = Company.objects.order_by("-id")
 
     # Aplicando a paginação
@@ -18,6 +31,8 @@ def index(request):
 
     context = {
         "companies": page_obj,
+        "user_type": user_type
+        
     }
 
     return render(request, "companies/index.html", context)
@@ -25,9 +40,20 @@ def index(request):
 
 def search(request):
     
+    user = request.user
+    
+    if user.username:
+        if Client.objects.filter(user=user).exists():
+            # login_user = Client.objects.filter(user=user)
+            user_type = "client"
+        else:
+            user_type = "other"
+    else:
+        return redirect("login:index")
+    
     search_value = str(request.GET.get("q").strip())
        
-    if False:
+    if user_type != "client":
         if search_value:
             return redirect(reverse('services:search', kwargs={'q': search_value}))
         else:
@@ -50,11 +76,25 @@ def search(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     
-    context = { "companies": page_obj }
+    context = {
+        "companies": page_obj,
+        "user_type": user_type
+        
+    }
     
     return render(request, "companies/index.html", context)
 
 def create(request):
+    
+    user = request.user
+    
+    if user.username:
+        if Company.objects.filter(user=user).exists():
+            # login_user = Client.objects.filter(user=user)
+            return redirect("clients:index")
+        user_type = "client"
+    else:
+        user_type = ""
        
     if request.method == 'POST':
         user_form = UserForm(request.POST)
@@ -82,7 +122,8 @@ def create(request):
     
     context = {
     'user_form': user_form,
-    'company_form': company_form
+    'company_form': company_form,
+    'user_type': user_type
     }
     
     return render(request, 'companies/create.html', context)

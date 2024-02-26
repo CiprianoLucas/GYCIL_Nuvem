@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+  Login Empresa
+{% endblock %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="container-sm">
+    <div class="text-center">
+      <h2 class="text-center">Faça o Login</h2>
+      <div class="">
+        <form action="{% url 'login:index' %}" method="POST">
+          {% csrf_token %}
+          {{ form|crispy }}
+
+          <div class="mb-3 mt-3">
+            <input class="form-control submitBtn" type="submit" value="Entrar" />
+          </div>
+        </form>
+        <div class="mb-5">
+          <a href="#">Esqueceu a senha?</a>
+        </div>
+
+        <p>Não está cadastrado?</p>
+
+        <div class="mb-3">
+          <a href="{% url 'clients:create' %}">Cadastre agora como cliente</a>
+        </div>
+        <div>
+          <a href="{% url 'companies:create' %}">Cadastre agora como empresa</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
