@@ -2,9 +2,9 @@
 {% load static %}
 
 {% block content %}
-  <main class="container-md">
-    <hr />
-    <header class="gap-4">
+  <main class="container-fluid">
+    <hr class="line"/>
+    <header class="gap-2 m-auto p-0">
       <div>
         <h3>Diversos tipos de Serviços e empresas em um só lugar</h3>
 
@@ -33,7 +33,7 @@
             <h5>Todas as categorias de serviços</h5>
           </div>
         </div>
-        <div class="row center-sm between-md space-between">
+        <div class="row row-cols-3">
           <div class="col-sm-4 col-md-1 false">
             <div class="row center-sm text-center">
               <a href="">
@@ -231,5 +231,22 @@
         </div>
       </div>
     </section>
+
+    {% comment %} <footer class="">
+      <hr />
+      <div class="text-center">
+        <img class="img-fluid mb-5" width="80px" src="{% static 'base/img/logo_diamond_crop.png' %}" alt="" />
+        <div class="text-center">
+          <a href="">Ajuda</a>
+        </div>
+        <div class="text-center">
+          <a href="">Termos de Uso</a>
+        </div>
+        <div class="text-center">
+          <a href="">Política e Privacidade</a>
+        </div>
+      </div>
+    </footer> {% endcomment %}
+    {% include "partials/_footer.html" %}
   </main>
 {% endblock %}

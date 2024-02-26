@@ -10,6 +10,7 @@ from django.http import JsonResponse
 from .forms import BudgetForm, ServiceForm
 from django.utils.text import slugify
 from clients.models import Client
+from django.conf import settings
 
 # Create your views here.
 
@@ -128,12 +129,14 @@ def my_services(request):
 def budgets_service(request, id):
     service = get_object_or_404(Service, pk=id)
     budgets = Budget.objects.filter(service=service).order_by('-id')
-       
+         
     budgets_serialized = [{
         'company': budget.company.fantasy_name,
-        'description': budget.description,
         'price': budget.price,
-        'date': budget.date,        
+        'date': budget.date,
+        'url_accept': reverse("services:accept_budget", kwargs={'id': int(budget.id)}),  
+        'url_refuse': reverse("services:refuse_budget", kwargs={'id': int(budget.id)}),
+        'budget_file': settings.MEDIA_URL + str(budget.budget_file)
     } for budget in budgets]
     
     
@@ -144,22 +147,31 @@ def descriptions(request, id):
      
     name = service[0].client.name.split()
     new_name = name[0] + " " + name[1][:2] + "***" 
+    
+    if service[0].company:
+        company=service[0].company.fantasy_name
+    else:
+        company=""
        
     print(new_name)
        
     service_serialized = [{
         'id': str(descriptions.id),
         'street': descriptions.street,
-        'description': descriptions.description,
         'cep': descriptions.cep,
         'state': descriptions.state,
         'city': descriptions.city,
         'created_at': str(descriptions.created_at),
+        'description': descriptions.description,
         'client': new_name,
+        'status': descriptions.status,
+        'date_start': descriptions.date,
+        'hours_service': descriptions.hours_service,
+        'company': company,
+        'price': descriptions.price,
         'category': descriptions.category.name,
         'url_refuse': reverse("services:refuse", kwargs={'id': int(descriptions.id)}),
         'url_accept': reverse("services:budget", kwargs={'id': int(descriptions.id)}),
-        
     } for descriptions in service]
     
     
@@ -178,7 +190,7 @@ def budget(request, id):
     budget = get_object_or_404(Budget, slug=slug)     
         
     if request.method == 'POST':
-        form = BudgetForm(request.POST, instance=budget)
+        form = BudgetForm(request.POST, request.FILES, instance=budget)
 
         if form.is_valid():
             budget = form.save()
@@ -202,11 +214,43 @@ def budget(request, id):
         
     return render(request, 'services/budget.html', context)
 
+def refuse_budget(request, id):
+    budget = get_object_or_404(Budget, pk=id)
+    client = get_object_or_404(Client, user=request.user)
+    service = Service.objects.filter(
+                                Q(client=client) &
+                                Q(id=budget.service.id)).first()
+      
+    if service.client == client:
+        budget.status="Recusado"
+        budget.save()
+    
+    return redirect("services:my_services")
+
+def accept_budget(request, id):
+    budget = get_object_or_404(Budget, pk=id)
+    client = get_object_or_404(Client, user=request.user)
+    service = Service.objects.filter(
+                                Q(client=client) &
+                                Q(id=budget.service.id)).first()
+        
+    if service.client == client:
+        service.company = budget.company
+        service.status = "Serviço em andamento"
+        service.price = budget.price
+        service.hours_service = budget.hours_service
+        service.date = budget.date
+        service.save()
+        budget.status="Aceito"
+        budget.save()
+    
+    return redirect("services:my_services")
+
 def create(request):
     client = get_object_or_404(Client, user=request.user)
         
     if request.method == 'POST':
-        form = ServiceForm(request.POST)
+        form = ServiceForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.instance.client = client
@@ -219,7 +263,7 @@ def create(request):
         'user_type': 'client'
         }
         
-        return render(request, 'services/budget.html', context)
+        return render(request, 'services/create.html', context)
             
     
     form = ServiceForm(initial={

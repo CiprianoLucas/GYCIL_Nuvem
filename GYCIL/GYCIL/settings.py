@@ -175,6 +175,8 @@ STATICFILES_DIRS = [
     BASE_DIR / 'base' / 'static'
 ]
 
+ALLOWED_UPLOAD_TYPES = ['pdf']
+
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 MEDIA_URL = 'media/'

@@ -12,7 +12,7 @@ class BudgetForm(forms.ModelForm):
         labels = {
             "price": "Valor final",
             "date": "Data de inicio",
-            "description": "Descrição",
+            "budget_file": "Arquivo de orçamento",
             "hours_service": "Horas de serviço",
         }
         
@@ -28,7 +28,7 @@ class BudgetForm(forms.ModelForm):
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
-        exclude = ["slug", "rating", "price", "status", "date", "hours_service", "created_at", "client", "company", "companies_refused"]
+        exclude = ["slug", "rating", "price", "status", "date", "hours_service", "created_at", "client", "company", "companies_refused", "nfe", "nfse"]
         
         
         labels = {
@@ -39,7 +39,7 @@ class ServiceForm(forms.ModelForm):
             "state": "Estado",
             "city": "Cidade",
             "number": "Número",
-            "imagens": "Imagem",
+            "imagem": "Imagem",
         }
         
         def save(self, commit=True):

@@ -5,7 +5,7 @@
   Cadastro de Orçamento
 {% endblock %}
 {% block head %}
-  {% comment %} <script src="{% static 'services/js/budget.js' %}"></script> {% endcomment %}
+  <script src="{% static 'services/js/budget.js' %}"></script>
   {% endblock %}
   {% block content %}
   <div class="m-3">
@@ -13,7 +13,7 @@
       {% csrf_token %}
       <div class="col-lg-6">{{ form.price|as_crispy_field }}</div>
       <div class="col-lg-6">{{ form.date|as_crispy_field }}</div>
-      <div class="col-lg-6">{{ form.description|as_crispy_field }}</div>
+      <div class="col-lg-6">{{ form.budget_file|as_crispy_field }}</div>
       <div class="col-lg-6">{{ form.hours_service|as_crispy_field }}</div>
       <button type="submit" class="btn btn-primary mt-5">Enviar Orçamento</button>
     </form>

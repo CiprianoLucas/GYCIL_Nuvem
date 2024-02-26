@@ -37,7 +37,7 @@
               <td class="d-flex gap-1">
                 <button data-url="{% url 'services:descriptions' service.id %}" type="button" class="btn btn-primary pe-3" data-bs-toggle="modal" data-bs-target="#serviceModal"><i class="bi bi-info-circle"></i></button>
 
-                {% if user_type == "client" %}
+                {% if user_type == "client" and not service.company %}
                   <button data-url="{% url 'services:budgets_service' service.id %}" type="button" class="btn btn-success pe-3" data-bs-toggle="modal" data-bs-target="#budgetModal"><i class="bi bi-newspaper"></i></button>
                 {% endif %}
               </td>
@@ -123,10 +123,50 @@
             </div>
             <div>
               <div>
-                <h4>Solicitado</h4>
+                <h4>Momento da solicitação</h4>
               </div>
               <div>
                 <p id="created_at"></p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h4>Status</h4>
+              </div>
+              <div>
+                <p id="status"></p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h4>Data de início</h4>
+              </div>
+              <div>
+                <p id="date_start"></p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h4>Horas de serviço</h4>
+              </div>
+              <div>
+                <p id="hours_service"></p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h4>Empresa</h4>
+              </div>
+              <div>
+                <p id="company"></p>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h4>Valor final</h4>
+              </div>
+              <div>
+                <p id="price"></p>
               </div>
             </div>
           </div>
@@ -138,7 +178,6 @@
                 <a href="" type="button" class="btn btn-success ms-3" id="button_accept">Editar Orçamento</a>
               {% elif user_type == "client" %}
                 <a href="" type="button" class="btn btn-danger ms-3" id="button_delete">Deletar</a>
-                <a href="" type="button" class="btn btn-primary ms-3" id="button_edith">Editar</a>
               {% else %}
                 <a href="" type="button" class="btn btn-danger ms-3" id="button_refuse">Recusar</a>
                 <a href="" type="button" class="btn btn-success ms-3" id="button_accept">Aceitar</a>

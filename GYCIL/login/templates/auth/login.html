@@ -1,39 +1,42 @@
-{% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %}
-  Login Empresa
-{% endblock %}
+{% include 'partials/_head.html' %}
 {% block head %}
-
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+  <script src="{% static 'base/css/login.css' %}"></script>
 {% endblock %}
 
 {% block content %}
+<div>
   <div class="container-sm">
-    <div class="text-center">
-      <h2 class="text-center">Faça o Login</h2>
-      <div class="">
-        <form action="{% url 'login:index' %}" method="POST">
-          {% csrf_token %}
-          {{ form|crispy }}
-
-          <div class="mb-3 mt-3">
-            <input class="form-control submitBtn" type="submit" value="Entrar" />
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-lg-8 text-center">
+        <a href="" ><img class="img-fluid mb-5" width="80px" src="{% static 'base/img/logo_diamond_crop.png' %}" alt=""></a>
+        <h2 class="text-center">Faça o Login</h2>
+        <div class="">
+          <form action="{% url 'login:index' %}" method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+  
+            <div class="mb-3 mt-3">
+              <input class="form-control submitBtn" type="submit" value="Entrar" />
+            </div>
+          </form>
+          <div class="mb-5">
+            <a href="#">Esqueceu a senha?</a>
           </div>
-        </form>
-        <div class="mb-5">
-          <a href="#">Esqueceu a senha?</a>
-        </div>
-
-        <p>Não está cadastrado?</p>
-
-        <div class="mb-3">
-          <a href="{% url 'clients:create' %}">Cadastre agora como cliente</a>
-        </div>
-        <div>
-          <a href="{% url 'companies:create' %}">Cadastre agora como empresa</a>
+  
+          <p>Não está cadastrado?</p>
+  
+          <div class="mb-3">
+            <a href="{% url 'clients:create' %}">Cadastre agora como cliente</a>
+          </div>
+          <div>
+            <a href="{% url 'companies:create' %}">Cadastre agora como empresa</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}

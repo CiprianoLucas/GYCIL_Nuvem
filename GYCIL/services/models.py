@@ -3,8 +3,6 @@ from django.utils.text import slugify
 from companies.models import Company, Category
 from clients.models import Client
 from django.utils import timezone
-class Files(models.Model):
-    file = models.FileField(upload_to='services_files/', blank=True, null=True)
 class Service(models.Model):
     STATE_CHOICES = {
         "AC": "Acre",
@@ -52,7 +50,9 @@ class Service(models.Model):
     client = models.ForeignKey(Client, on_delete=models.DO_NOTHING)
     company = models.ForeignKey(Company, on_delete=models.DO_NOTHING, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
-    imagens = models.ImageField(upload_to='services_files/', blank=True, null=True)
+    imagem = models.ImageField(upload_to='services_files', blank=True, null=True)
+    nfe = models.FileField(upload_to='services_files', blank=True, null=True)
+    nfse = models.FileField(upload_to='services_files', blank=True, null=True)
     companies_refused = models.ManyToManyField(Company, related_name='refused_services', blank=True)
     
     def save(self, *args, **kwargs):
@@ -76,7 +76,7 @@ class Budget(models.Model):
     price = models.CharField(max_length=255, blank=True)
     status = models.CharField(max_length=255, default="aguardando orçamento")
     date = models.CharField(max_length=255, blank=True)
-    description = models.TextField(max_length=3000, blank=True)
+    budget_file = models.FileField(upload_to='budgets_files/', blank=True)
     hours_service = models.CharField(max_length=255, blank=True)
     
     def save(self, *args, **kwargs):
