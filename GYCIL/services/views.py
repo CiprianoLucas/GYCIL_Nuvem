@@ -136,7 +136,7 @@ def budgets_service(request, id):
         'date': budget.date,
         'url_accept': reverse("services:accept_budget", kwargs={'id': int(budget.id)}),  
         'url_refuse': reverse("services:refuse_budget", kwargs={'id': int(budget.id)}),
-        'budget_file': settings.MEDIA_URL + str(budget.budget_file)
+        'budget_file': settings.AWS_S3_CUSTOM_DOMAIN + settings.MEDIA_URL + str(budget.budget_file)
     } for budget in budgets]
     
     

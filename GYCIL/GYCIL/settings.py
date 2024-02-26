@@ -118,6 +118,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+AWS_S3_CUSTOM_DOMAIN = ""
+
 if env("ENV") == "production":
     
     DEBUG = False
