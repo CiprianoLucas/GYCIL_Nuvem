@@ -9,30 +9,30 @@
 {% block content %}
 <div>
   <div class="container-sm">
-    <div class="row justify-content-center align-items-center vh-100">
+    <div class="row align-items-center vh-100">
       <div class="col-lg-8 text-center">
         <a href="" ><img class="img-fluid mb-5" width="80px" src="{% static 'base/img/logo_diamond_crop.png' %}" alt=""></a>
-        <h2 class="text-center">Faça o Login</h2>
-        <div class="">
-          <form action="{% url 'login:index' %}" method="POST">
-            {% csrf_token %}
-            {{ form|crispy }}
-  
-            <div class="mb-3 mt-3">
-              <input class="form-control submitBtn" type="submit" value="Entrar" />
-            </div>
-          </form>
-          <div class="mb-5">
-            <a href="#">Esqueceu a senha?</a>
-          </div>
-  
-          <p>Não está cadastrado?</p>
-  
-          <div class="mb-3">
-            <a href="{% url 'clients:create' %}">Cadastre agora como cliente</a>
+        <div class="card">
+          <div class="card-body shadow rounded">
+            <h2 class="text-center mt-3 mb-3">Login</h2>
+            <form class="mt-3 mb-3" action="{% url 'login:index' %}" method="POST">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <div class="mb-5 mt-5">
+                <input class="form-control submitBtn mb-3 mt-3" type="submit" value="Entrar" />
+              </div>
+              <div class="mt-3 mb-3">
+                <a href="#">Esqueceu a senha?</a>
+              </div>
+            </form>
+          </div> 
+          
+          <div class="mt-5 mb-3">
+            <p>Não está cadastrado?</p>
+            <a href="{% url 'clients:create' %}">Cadastre-se como cliente</a>
           </div>
           <div>
-            <a href="{% url 'companies:create' %}">Cadastre agora como empresa</a>
+            <a href="{% url 'companies:create' %}">Cadastre-se como empresa</a>
           </div>
         </div>
       </div>
