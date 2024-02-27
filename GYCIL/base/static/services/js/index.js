@@ -30,6 +30,19 @@ jQuery(function() {
                 const $price = $("#price");
                 const $button_refuse = $("#button_refuse");
                 const $button_accept = $("#button_accept");
+                const $button_delete = $("#button_delete");
+
+                if (descriptions.status === "Aceito"){
+                    $button_accept.text("Finalizar")
+                }
+                else if (descriptions.status == "Aguardando avaliação" ||
+                         descriptions.status == "Concluido"){
+                    $button_accept.remove()
+                    $button_refuse.remove()
+                    $button_delete.remove()
+                }
+
+                console.log(descriptions.status)
                 
 
                 $serviceModalLabel.text(("SERVIÇO DE " + descriptions.category + ": " + descriptions.id).toUpperCase())
@@ -46,6 +59,7 @@ jQuery(function() {
                 $price.text(descriptions.price);
                 $button_refuse.attr("href", descriptions.url_refuse);
                 $button_accept.attr("href", descriptions.url_accept);
+                $button_delete.attr("href", descriptions.url_delete);
        
                 
             })

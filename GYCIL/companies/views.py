@@ -24,7 +24,7 @@ def index(request):
     companies = Company.objects.order_by("-id")
 
     # Aplicando a paginação
-    paginator = Paginator(companies, 30)
+    paginator = Paginator(companies, 5)
     # /fornecedores?page=1 -> Obtendo a página da URL
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -84,6 +84,51 @@ def search(request):
     
     return render(request, "companies/index.html", context)
 
+def search_q(request, q):
+    user = request.user
+    
+    if user.username:
+        if Client.objects.filter(user=user).exists():
+            # login_user = Client.objects.filter(user=user)
+            user_type = "client"
+        else:
+            user_type = "other"
+    else:
+        return redirect("login:index")
+    
+    search_value = q
+       
+    if user_type != "client":
+        if search_value:
+            return redirect(reverse('services:search', kwargs={'q': search_value}))
+        else:
+            return redirect('services:index')
+    
+    
+    if not search_value:
+        return redirect("companies:index")
+    
+    
+    
+    companies = Company.objects \
+        .filter(Q(fantasy_name__icontains=search_value) |
+                Q(city__icontains=search_value)|
+                Q(categories__name__icontains=search_value))\
+        .order_by("-id")
+           
+    # Criando o paginator
+    paginator = Paginator(companies, 30)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        "companies": page_obj,
+        "user_type": user_type
+        
+    }
+    
+    return render(request, "companies/index.html", context)
+
 def create(request):
     
     user = request.user
@@ -103,10 +148,11 @@ def create(request):
         if user_form.is_valid() and company_form.is_valid():
                        
             user = user_form.save()
-            client = company_form.save(commit=False)
-            client.user = user
-            client.save()
-            messages.success(request, 'Cliente cadastrado')
+            company = company_form.save(commit=False)
+            company.user = user
+            company.save()
+            company_form.save_m2m()
+            messages.success(request, 'Empresa cadastrada')
             return redirect('companies:index')
         
         context = {

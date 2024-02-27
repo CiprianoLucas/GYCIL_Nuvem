@@ -118,8 +118,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-AWS_S3_CUSTOM_DOMAIN = ""
-
 if env("ENV") == "production":
     
     DEBUG = False
@@ -165,6 +163,8 @@ else:
     }
 }
     
+    MEDIA_URL = 'media/'
+    
     STATIC_URL = 'static/'
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -181,7 +181,7 @@ ALLOWED_UPLOAD_TYPES = ['pdf']
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
-MEDIA_URL = 'media/'
+
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"

@@ -173,3 +173,15 @@ section .card-body {
   color: #2D5D4F;
   font-size: 30px;
 }
+
+.bi-star-fill{
+  color: rgb(255, 238, 0);
+}
+
+.bi-shield-fill-check {
+  color: rgb(0, 202, 0);
+}
+
+.card-background {
+  background-color: #2D5D4F;
+}

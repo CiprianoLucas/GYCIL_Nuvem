@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %}
+  Cadastro de Clientes
+{% endblock %}
 {% block content %}
   <main class="container-fluid">
-    <hr class="line"/>
-    <header class="gap-2 m-auto p-0">
+    <header class="gap-2 m-0">
       <div>
         <h3>Diversos tipos de Serviços e empresas em um só lugar</h3>
 
@@ -14,17 +15,19 @@
       <img class="img img-fluid" width="700" src="{% static 'base/img/header-image.png' %}" alt="header-image" />
     </header>
 
-    <div class="row mb-4">
-      <div class="col-8">
-        <div class="input-group">
-          <i class="bi bi-search input-group-text"></i>
-          <input class="form-control" />
+    <form role="search" action="{% url 'companies:search' %}">
+      <div class="row mb-4">
+        <div class="col-lg-4 mb-4">
+          <div class="input-group">
+            <i class="bi bi-search input-group-text"></i>
+            <input value="{{ request.GET.q }}" type="text" placeholder="Procure aqui" aria-label="Search" name="q" class="form-control" />
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <input class="form-control btn submitBtn" type="submit" value="Pesquisar" />
         </div>
       </div>
-      <div class="col-4">
-        <input class="form-control btn btn-success" type="submit" value="Pesquisar" />
-      </div>
-    </div>
+    </form>
 
     <section class="container-fluid rounded mt-5 shadow">
       <div class="card first-md text-center">
@@ -36,7 +39,7 @@
         <div class="row row-cols-3">
           <div class="col-sm-4 col-md-1 false">
             <div class="row center-sm text-center">
-              <a href="">
+              <a href="{% url 'companies:search_q' 'Assistência Técnica' %}">
                 <i class="bi bi-gear-wide"></i>
                 <p>
                   Assistência <br /> Técnica
@@ -46,7 +49,7 @@
           </div>
           <div class="col-sm-4 col-md-1 false">
             <div class="row center-sm text-center">
-              <a href="">
+              <a href="{% url 'companies:search_q' 'Autos' %}">
                 <i class="bi bi-car-front-fill"></i>
                 <p>Autos</p>
               </a>
@@ -54,7 +57,7 @@
           </div>
           <div class="col-sm-4 col-md-1 false">
             <div class="row center-sm text-center">
-              <a href="">
+              <a href="{% url 'companies:search_q' 'Aulas e Disciplinas' %}">
                 <i class="bi bi-pencil-fill"></i>
                 <p>
                   Aulas e <br /> Disciplinas
@@ -64,7 +67,7 @@
           </div>
           <div class="col-sm-4 col-md-1 false">
             <div class="row center-sm text-center">
-              <a href="">
+              <a href="{% url 'companies:search_q' 'Tecnologia' %}">
                 <i class="bi bi-display"></i>
                 <p>Tecnologia</p>
               </a>
@@ -72,7 +75,7 @@
           </div>
           <div class="col-sm-4 col-md-1 false">
             <div class="row center-sm text-center">
-              <a href="">
+              <a href="{% url 'companies:search_q' 'Eventos' %}">
                 <i class="bi bi-cup-straw"></i>
                 <p>Eventos</p>
               </a>
@@ -80,7 +83,7 @@
           </div>
           <div class="col-sm-4 col-md-1 false">
             <div class="row center-sm text-center">
-              <a href="">
+              <a href="{% url 'companies:search_q' 'Serviços Domésticos' %}">
                 <i class="bi bi-house"></i>
                 <p>
                   Serviços <br /> Domésticos
@@ -90,7 +93,7 @@
           </div>
           <div class="col-sm-4 col-md-1 false">
             <div class="row center-sm text-center">
-              <a href="">
+              <a href="{% url 'companies:search_q' 'Moda e Beleza' %}">
                 <i class="bi bi-handbag"></i>
                 <p>
                   Moda e <br /> Beleza
@@ -100,7 +103,7 @@
           </div>
           <div class="col-sm-4 col-md-1 false">
             <div class="row center-sm text-center">
-              <a href="">
+              <a href="{% url 'companies:search_q' 'Reforma e Reparos' %}">
                 <i class="bi bi-tools"></i>
                 <p>
                   Reforma e <br /> Reparos
@@ -110,7 +113,7 @@
           </div>
           <div class="col-sm-4 col-md-1 false">
             <div class="row center-sm text-center">
-              <a href="">
+              <a href="{% url 'companies:search_q' 'Saúde' %}">
                 <i class="bi bi-heart-pulse"></i>
                 <p>Saúde</p>
               </a>
@@ -198,39 +201,29 @@
         <hr class="line" />
       </div>
     </section>
-
-    <section class="container-fluid mt-5 mb-5 rounded-2">
-      <div class="card">
-        <div class="card-body text-center rounded shadow">
-          <div class="no-margin">
-            <h4>Cadastre-se na GYCIL</h4>
-            <P>Preencha os campos abaixo:</P>
-          </div>
-          <form action="">
-            <div class="row space-between start-sm top-sm">
-              <div class="col-sm-12 col-md-4">
-                <div class="text-field-container">
-                  <label for="email" class="form-label">Razão Social</label>
-                  <input type="email" class="form-control text-center shadow p-3 mb-5 bg-body-tertiary rounded" id="exampleFormControlInput1" placeholder="Digite a Razão Social" name="email_user" />
-                </div>
-              </div>
-              <div class="col-sm-12 col-md-4">
+    {% if not user_type %}
+      <section class="container-fluid mt-5 mb-3 rounded-2">
+        <div class="card">
+          <div class="card-body text-center rounded shadow">
+            <div class="no-margin">
+              <h4>Cadastre-se na GYCIL</h4>
+            </div>
+            <div>
+              <div class="row space-between start-sm top-sm">
                 <div class="col-sm-12 col-md-4">
-                  <div class="text-field-container">
-                    <label for="exampleFormControlInput1" class="form-label">CNPJ:</label>
-                    <input type="cnpj" class="form-control text-center shadow p-3 mb-5 bg-body-tertiary rounded" id="exampleFormControlInput1" placeholder="Digite o CNPJ da sua empresa" name="cnpj" />
+                  <div class="col-sm-4 col-md-4 m-3">
+                    <a href="{% url 'clients:create' %}" class="form-control submitBtn" type="submit" value="Cadastre-se">Cadastre-se como Cliente</a>
+                  </div>
+                  <div class="col-sm-4 col-md-4 m-3">
+                    <a href="{% url 'companies:create' %}" class="form-control submitBtn" type="submit" value="Cadastre-se">Cadastre-se como Prestador de Serviço</a>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-md-4">
-                <div class="col-sm-4 col-md-4"></div>
-                <input class="form-control submitBtn" type="submit" value="Cadastre-se" />
-              </div>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    {% endif %}
 
     {% comment %} <footer class="">
       <hr />
@@ -247,6 +240,6 @@
         </div>
       </div>
     </footer> {% endcomment %}
-    {% include "partials/_footer.html" %}
+    {% include 'partials/_footer.html' %}
   </main>
 {% endblock %}

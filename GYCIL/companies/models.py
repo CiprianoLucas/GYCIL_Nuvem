@@ -74,7 +74,7 @@ class Company(models.Model):
         return self.fantasy_name
         
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.fantasy_name)
+        self.slug = slugify(f"{self.fantasy_name}_{self.user.id}")
                           
         super(Company, self).save(*args, **kwargs)
 

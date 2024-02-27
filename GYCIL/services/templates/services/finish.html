@@ -2,16 +2,15 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block title %}
-  Cadastro de Orçamento
+  Finalizar Serviço
 {% endblock %}
 {% block head %}
-  <script src="{% static 'services/js/budget.js' %}"></script>
-{% endblock %}
-{% block content %}
+  {% endblock %}
+  {% block content %}
   <div class="container-fluid">
     <div class="container-fluid bottom-sm">
       <div class="col-sm-12 col-md-8 text-center">
-        <h5>Faça seu orçamento <br /> Esperamos que feche!</h5>
+        <h5>Parabéns pela venda! <br> Encaminhe as NFs</h5>
       </div>
       <div class="text-center">
         <i class="bi bi-star-fill"></i>
@@ -28,12 +27,9 @@
           <div class="card-body rounded shadow">
             <form action="{{ form_action }}" method="post" enctype="multipart/form-data" novalidate>
               {% csrf_token %}
-              <div class="col-lg-6">{{ form.price|as_crispy_field }}</div>
-              <div class="col-lg-6">{{ form.date|as_crispy_field }}</div>
-              <div class="col-lg-6">{{ form.budget_file|as_crispy_field }}</div>
-              <div class="col-lg-6">{{ form.hours_service|as_crispy_field }}</div>
+              {{form|crispy}}
               <div class="text-center">
-                <button id="send_button" type="submit" class="btn btn-primary mt-5">Enviar</button>
+                <button type="submit" class="btn submitBtn mt-2 mb-2">Finalizar</button>
               </div>
             </form>
           </div>
@@ -41,4 +37,7 @@
       </div>
     </div>
   </div>
-{% endblock %}
+
+  {% include "partials/_footer.html" %}
+
+  {% endblock %}

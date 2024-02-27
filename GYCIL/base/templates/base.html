@@ -31,7 +31,7 @@
   <body>
     {% comment %}Navbar{% endcomment %}
     {% block nav %}
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" href="{% url "home" %}"><img src="{% static 'base/img/logo_oficial.png' %}" alt="Logo" width="30" height="24" class="logo" /></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -88,6 +88,7 @@
           </div>
         </div>
       </nav>
+      <hr class="line m-0">
     {% endblock %}
     <main>
       <div class="row mb-3 justify-content-center">

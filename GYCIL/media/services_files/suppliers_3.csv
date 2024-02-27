@@ -1,0 +1,51 @@
+company_name;fantasy_name;cnpj;phone;email;representative;street;zipcode;number;city;state
+Empresa Exemplo S.A. 1;Fantasia 1;44.835.449/0001-63;(67) 9 9878-2144;contato1@empresaexemplo.com.br;Representante 1;Rua Exemplo, 956;44078-879;689;Cidade Exemplo;PE
+Empresa Exemplo S.A. 2;Fantasia 2;21.504.744/0001-96;(88) 9 9471-1407;contato2@empresaexemplo.com.br;Representante 2;Rua Exemplo, 567;23245-510;864;Cidade Exemplo;SE
+Empresa Exemplo S.A. 3;Fantasia 3;10.512.299/0001-35;(84) 9 6764-1372;contato3@empresaexemplo.com.br;Representante 3;Rua Exemplo, 380;56377-431;838;São Paulo;SP
+Empresa Exemplo S.A. 4;Fantasia 4;73.627.647/0001-63;(48) 9 5204-4136;contato4@empresaexemplo.com.br;Representante 4;Rua Exemplo, 461;18286-264;99;Cidade Exemplo;AC
+Empresa Exemplo S.A. 5;Fantasia 5;61.808.242/0001-18;(15) 9 9244-8610;contato5@empresaexemplo.com.br;Representante 5;Rua Exemplo, 553;31170-687;334;Cidade Exemplo;PE
+Empresa Exemplo S.A. 6;Fantasia 6;17.594.631/0001-93;(18) 9 4320-2638;contato6@empresaexemplo.com.br;Representante 6;Rua Exemplo, 255;93103-775;544;Cidade Exemplo;MT
+Empresa Exemplo S.A. 7;Fantasia 7;39.190.285/0001-76;(66) 9 2308-3470;contato7@empresaexemplo.com.br;Representante 7;Rua Exemplo, 399;60777-451;489;Joinville;SC
+Empresa Exemplo S.A. 8;Fantasia 8;12.573.485/0001-82;(37) 9 8446-5908;contato8@empresaexemplo.com.br;Representante 8;Rua Exemplo, 51;16843-461;829;Cidade Exemplo;PB
+Empresa Exemplo S.A. 9;Fantasia 9;49.649.609/0001-11;(45) 9 4905-2430;contato9@empresaexemplo.com.br;Representante 9;Rua Exemplo, 228;34752-160;467;São Paulo;SP
+Empresa Exemplo S.A. 10;Fantasia 10;54.260.250/0001-88;(40) 9 5929-3509;contato10@empresaexemplo.com.br;Representante 10;Rua Exemplo, 12;17323-758;392;Belo Horizonte;MG
+Empresa Exemplo S.A. 11;Fantasia 11;15.659.503/0001-76;(38) 9 1604-6216;contato11@empresaexemplo.com.br;Representante 11;Rua Exemplo, 149;93304-615;289;Cidade Exemplo;PE
+Empresa Exemplo S.A. 12;Fantasia 12;32.125.731/0001-90;(36) 9 5307-3873;contato12@empresaexemplo.com.br;Representante 12;Rua Exemplo, 657;67037-637;929;Cidade Exemplo;SE
+Empresa Exemplo S.A. 13;Fantasia 13;77.333.444/0001-73;(80) 9 7725-8160;contato13@empresaexemplo.com.br;Representante 13;Rua Exemplo, 27;71810-594;747;Cidade Exemplo;GO
+Empresa Exemplo S.A. 14;Fantasia 14;85.289.932/0001-62;(98) 9 1039-2075;contato14@empresaexemplo.com.br;Representante 14;Rua Exemplo, 942;79398-222;904;São Paulo;SP
+Empresa Exemplo S.A. 15;Fantasia 15;40.389.269/0001-75;(63) 9 5143-1645;contato15@empresaexemplo.com.br;Representante 15;Rua Exemplo, 857;33857-518;662;Cidade Exemplo;PR
+Empresa Exemplo S.A. 16;Fantasia 16;21.507.936/0001-88;(19) 9 2427-8449;contato16@empresaexemplo.com.br;Representante 16;Rua Exemplo, 555;68365-654;350;Porto Alegre;RS
+Empresa Exemplo S.A. 17;Fantasia 17;34.212.725/0001-10;(55) 9 4582-1273;contato17@empresaexemplo.com.br;Representante 17;Rua Exemplo, 623;39797-167;609;Cidade Exemplo;TO
+Empresa Exemplo S.A. 18;Fantasia 18;59.976.579/0001-58;(87) 9 6482-4790;contato18@empresaexemplo.com.br;Representante 18;Rua Exemplo, 111;20792-908;483;Cidade Exemplo;PI
+Empresa Exemplo S.A. 19;Fantasia 19;16.949.338/0001-40;(65) 9 6330-2311;contato19@empresaexemplo.com.br;Representante 19;Rua Exemplo, 291;77281-770;70;Belo Horizonte;MG
+Empresa Exemplo S.A. 20;Fantasia 20;15.420.738/0001-88;(99) 9 6562-2190;contato20@empresaexemplo.com.br;Representante 20;Rua Exemplo, 395;66109-159;551;Cidade Exemplo;DF
+Empresa Exemplo S.A. 21;Fantasia 21;75.469.941/0001-97;(45) 9 4541-9866;contato21@empresaexemplo.com.br;Representante 21;Rua Exemplo, 51;48144-545;897;Cidade Exemplo;AL
+Empresa Exemplo S.A. 22;Fantasia 22;70.256.753/0001-46;(62) 9 7140-5740;contato22@empresaexemplo.com.br;Representante 22;Rua Exemplo, 820;41586-951;771;Cidade Exemplo;AC
+Empresa Exemplo S.A. 23;Fantasia 23;55.601.563/0001-38;(95) 9 6142-2999;contato23@empresaexemplo.com.br;Representante 23;Rua Exemplo, 710;64442-119;477;Cidade Exemplo;ES
+Empresa Exemplo S.A. 24;Fantasia 24;98.167.894/0001-11;(39) 9 2994-1250;contato24@empresaexemplo.com.br;Representante 24;Rua Exemplo, 699;93480-486;46;Joinville;SC
+Empresa Exemplo S.A. 25;Fantasia 25;55.770.931/0001-64;(55) 9 4947-2128;contato25@empresaexemplo.com.br;Representante 25;Rua Exemplo, 982;97883-908;196;Cidade Exemplo;ES
+Empresa Exemplo S.A. 26;Fantasia 26;16.946.160/0001-74;(23) 9 8375-8995;contato26@empresaexemplo.com.br;Representante 26;Rua Exemplo, 312;70002-325;632;Cidade Exemplo;MT
+Empresa Exemplo S.A. 27;Fantasia 27;98.149.515/0001-82;(85) 9 6538-9863;contato27@empresaexemplo.com.br;Representante 27;Rua Exemplo, 937;67724-315;878;Cidade Exemplo;ES
+Empresa Exemplo S.A. 28;Fantasia 28;22.242.726/0001-34;(59) 9 7883-9717;contato28@empresaexemplo.com.br;Representante 28;Rua Exemplo, 45;12469-673;123;Rio de Janeiro;RJ
+Empresa Exemplo S.A. 29;Fantasia 29;16.241.162/0001-28;(24) 9 1154-9091;contato29@empresaexemplo.com.br;Representante 29;Rua Exemplo, 391;68086-955;144;Cidade Exemplo;PR
+Empresa Exemplo S.A. 30;Fantasia 30;70.583.498/0001-84;(30) 9 6588-4845;contato30@empresaexemplo.com.br;Representante 30;Rua Exemplo, 443;32804-581;684;Cidade Exemplo;PE
+Empresa Exemplo S.A. 31;Fantasia 31;15.670.611/0001-48;(86) 9 3016-3493;contato31@empresaexemplo.com.br;Representante 31;Rua Exemplo, 968;41143-629;231;Cidade Exemplo;RO
+Empresa Exemplo S.A. 32;Fantasia 32;42.194.781/0001-84;(56) 9 4485-2687;contato32@empresaexemplo.com.br;Representante 32;Rua Exemplo, 955;32110-319;662;Rio de Janeiro;RJ
+Empresa Exemplo S.A. 33;Fantasia 33;73.121.338/0001-31;(75) 9 4585-4463;contato33@empresaexemplo.com.br;Representante 33;Rua Exemplo, 213;79924-186;280;Cidade Exemplo;PI
+Empresa Exemplo S.A. 34;Fantasia 34;14.941.284/0001-68;(91) 9 1348-6146;contato34@empresaexemplo.com.br;Representante 34;Rua Exemplo, 196;17701-359;590;Cidade Exemplo;ES
+Empresa Exemplo S.A. 35;Fantasia 35;20.422.297/0001-98;(57) 9 9012-7087;contato35@empresaexemplo.com.br;Representante 35;Rua Exemplo, 882;88508-817;176;Cidade Exemplo;MA
+Empresa Exemplo S.A. 36;Fantasia 36;92.408.890/0001-30;(55) 9 9344-4525;contato36@empresaexemplo.com.br;Representante 36;Rua Exemplo, 952;61568-208;971;Cidade Exemplo;AC
+Empresa Exemplo S.A. 37;Fantasia 37;30.381.520/0001-16;(28) 9 2270-8111;contato37@empresaexemplo.com.br;Representante 37;Rua Exemplo, 598;60500-339;326;Cidade Exemplo;PE
+Empresa Exemplo S.A. 38;Fantasia 38;96.472.432/0001-95;(96) 9 2570-4708;contato38@empresaexemplo.com.br;Representante 38;Rua Exemplo, 447;93479-942;177;Joinville;SC
+Empresa Exemplo S.A. 39;Fantasia 39;78.799.585/0001-78;(56) 9 7147-3734;contato39@empresaexemplo.com.br;Representante 39;Rua Exemplo, 503;15841-813;290;Cidade Exemplo;PB
+Empresa Exemplo S.A. 40;Fantasia 40;80.479.575/0001-81;(10) 9 6232-1938;contato40@empresaexemplo.com.br;Representante 40;Rua Exemplo, 128;71697-290;827;Cidade Exemplo;GO
+Empresa Exemplo S.A. 41;Fantasia 41;26.219.720/0001-32;(70) 9 3018-6873;contato41@empresaexemplo.com.br;Representante 41;Rua Exemplo, 870;49976-118;948;Rio de Janeiro;RJ
+Empresa Exemplo S.A. 42;Fantasia 42;88.761.668/0001-79;(61) 9 6678-2961;contato42@empresaexemplo.com.br;Representante 42;Rua Exemplo, 557;31837-403;110;Cidade Exemplo;TO
+Empresa Exemplo S.A. 43;Fantasia 43;60.509.396/0001-44;(77) 9 3335-5857;contato43@empresaexemplo.com.br;Representante 43;Rua Exemplo, 11;96277-983;812;Cidade Exemplo;BA
+Empresa Exemplo S.A. 44;Fantasia 44;96.374.764/0001-99;(11) 9 4795-2031;contato44@empresaexemplo.com.br;Representante 44;Rua Exemplo, 177;80114-126;193;Cidade Exemplo;CE
+Empresa Exemplo S.A. 45;Fantasia 45;79.911.666/0001-73;(35) 9 6625-3094;contato45@empresaexemplo.com.br;Representante 45;Rua Exemplo, 576;91643-768;80;Cidade Exemplo;CE
+Empresa Exemplo S.A. 46;Fantasia 46;18.306.477/0001-22;(90) 9 8778-1833;contato46@empresaexemplo.com.br;Representante 46;Rua Exemplo, 722;93841-486;848;Cidade Exemplo;MS
+Empresa Exemplo S.A. 47;Fantasia 47;84.485.143/0001-12;(97) 9 8624-5017;contato47@empresaexemplo.com.br;Representante 47;Rua Exemplo, 303;66744-634;104;Cidade Exemplo;PA
+Empresa Exemplo S.A. 48;Fantasia 48;37.553.141/0001-90;(84) 9 6232-1214;contato48@empresaexemplo.com.br;Representante 48;Rua Exemplo, 704;65818-970;483;Cidade Exemplo;AC
+Empresa Exemplo S.A. 49;Fantasia 49;24.599.319/0001-95;(36) 9 2342-8703;contato49@empresaexemplo.com.br;Representante 49;Rua Exemplo, 492;61937-539;592;Cidade Exemplo;AM
+Empresa Exemplo S.A. 50;Fantasia 50;76.422.770/0001-69;(34) 9 2984-4432;contato50@empresaexemplo.com.br;Representante 50;Rua Exemplo, 803;59732-458;678;Cidade Exemplo;AL

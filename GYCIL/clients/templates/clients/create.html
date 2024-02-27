@@ -1,20 +1,32 @@
-{% extends 'base.html' %}
+{% include "partials/_head.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block title %}
-  Cadastro de Clientes
-{% endblock %}
 {% block head %}
   <script src="{% static 'clients/js/create.js' %}"></script>
   {% endblock %}
   {% block content %}
-  <div class="m-3">
+  <div class="container-sm">
+    <div class="text-center">
+      <a href="" ><img class="img-fluid mb-3 mt-3" width="80px" src="{% static 'base/img/logo_diamond_crop.png' %}" alt=""></a>
+    </div>
+    <div class="">
+      <h4>Buscando serviços? Achou =) <br> Cadastre-se!</h5>
+        
+      <p>Encontre as melhores ofertas para diferentes <br>
+        tipos de serviços!
+      </p>
+    </div>
     <form action="{{ form_action }}" method="post" enctype="multipart/form-data" novalidate>
       {% csrf_token %}
       {{ user_form|crispy }}
       {{ client_form|crispy }}
-      <button type="submit" class="btn btn-primary mt-5">Cadastrar</button>
+      <div class="text-center">
+        <button type="submit" class="btn submitBtn mt-3 mb-3">Cadastrar</button>
+      </div>
     </form>
+  </div>
+  <div class="mb-3">
+    {% include "partials/_footer.html" %}
   </div>
 
 

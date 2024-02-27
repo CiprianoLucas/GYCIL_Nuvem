@@ -7,45 +7,81 @@
 {% endblock %}
 
 {% block content %}
-  <h2 class="mb-3 text-center">Empresas</h2>
-  <hr />
-  <div class="row d-flex justify-content-center ms-1 me-1">
-    {% for company in companies %}
-      <div class="col-lg-4">
-        <div class="card mb-4 box-shadow">
-          <div class="card-body">
-            {% if company.logo %}
-              <img src="{{ company.logo.url }}" height="50" width="50" alt="{{ company.fantasy_name }}" class="imf-fluid rounded" />
-            {% else %}
-              <img src="{% static 'base/img/logo.png' %}" alt="{{ company.fantasy_name }}" height="50" width="50" alt="{{ company.fantasy_name }}" class="imf-fluid rounded" />
+  <div class="container-fluid bottom-sm">
+    <div class="col-sm-12 col-md-8 text-center">
+      <h5>Precisando de <br> empresas especializadas?</h5>
+    </div>
+    <div class="text-center">
+      <i class="bi bi-star-fill"></i>
+      <p>Empresas avaliadas</p>
+      <i class="bi bi-shield-fill-check"></i>
+      <p>Contratos 100% seguros</p>
+      <i class="bi bi-wallet-fill"></i>
+      <p>Preços Justos</p>
+    </div>
+  </div>
+
+  <div class="container row d-flex justify-content-center ms-1 me-1">
+    <div class="card">
+      <div class="card-body rounded card-background shadow">
+        <div class="card shadow rounded">
+          <div class="card-body rounded shadow bg-white">
+
+            <div class="text-center p-4">
+              <h5>Qual empresa você <br> está buscando?</h5>
+            </div>
+            <div class="input-group mb-4">
+              <form class="d-flex" role="search" action="{% url 'companies:search' %}">
+                <input value="{{ request.GET.q }}" class="form-control me-2" type="text" placeholder="Procure aqui" aria-label="Search" name="q"/>
+                <button class="btn btn-success" type="submit">Procurar</button>
+              </form>
+            </div>
+
+            {% for company in companies %}
+              <div class="col-lg-4">
+                <div class="contaier text-center bg-white mb-4 shadow-sm border ">
+                  <div class="d-flex align-items-center mx-auto p-2 card-body justify-content-between">
+                    <div class="text-center">
+                      {% if company.logo %}
+                        <img src="{{ company.logo.url }}" class="img img-fluid" height="50" width="50" alt="{{ company.fantasy_name }}" class="imf-fluid rounded" />
+                      {% else %}
+                        <img src="{% static 'base/img/logo_diamond_crop.png' %}" class="img img-fluid" alt="{{ company.fantasy_name }}" height="50" width="50" alt="{{ company.fantasy_name }}" class="imf-fluid rounded" />
+                      {% endif %}
+                    </div>
+                    {% comment %} <p>{{ company.city }}</p> {% endcomment %}
+                      <p class="m-0">{{ company.fantasy_name }}</p>
+                    <a href="{% url "services:create_company" company.id %}"><i class="bi bi-arrow-right"></a></i>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            {% if companies.paginator.num_pages > 1 %}
+              <nav aria-label="Paginação da página">
+                <ul class="pagination justify-content-end">
+                  {% if companies.has_previous %}
+                    <li class="page-item">
+                      <a href="?page={{ companies.previous_page_number }}&q={{ request.GET.q }}" class="page-link" aria-label="Anterior">&laquo;</a>
+                    </li>
+                  {% endif %}
+                  <li class="page-item active">
+                    <span class="page-link">{{ companies.number }}</span>
+                  </li>
+                  {% if companies.has_next %}
+                    <li class="page-item">
+                      <a href="?page={{ companies.next_page_number }}&q={{ request.GET.q }}" class="page-link" aria-label="Próximo">&raquo;</a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </nav>
             {% endif %}
-            <h3>{{ company.fantasy_name }}</h3>
-            <p>{{ company.city }}</p>
           </div>
         </div>
       </div>
-    {% endfor %}
+    </div>
 
 
 
-    {% if companies.paginator.num_pages > 1 %}
-      <nav aria-label="Paginação da página">
-        <ul class="pagination justify-content-end">
-          {% if companies.has_previous %}
-            <li class="page-item">
-              <a href="?page={{ companies.previous_page_number }}&q={{ request.GET.q }}" class="page-link" aria-label="Anterior">&laquo;</a>
-            </li>
-          {% endif %}
-          <li class="page-item active">
-            <span class="page-link">{{ companies.number }}</span>
-          </li>
-          {% if companies.has_next %}
-            <li class="page-item">
-              <a href="?page={{ companies.next_page_number }}&q={{ request.GET.q }}" class="page-link" aria-label="Próximo">&raquo;</a>
-            </li>
-          {% endif %}
-        </ul>
-      </nav>
-    {% endif %}
   </div>
+
+  {% include "partials/_footer.html" %}
 {% endblock %}
