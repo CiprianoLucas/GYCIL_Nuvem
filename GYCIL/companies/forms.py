@@ -9,7 +9,10 @@ from crispy_forms.layout import Layout, Submit
 
 
 class CompanyForm(forms.ModelForm):
-    categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all(), widget=forms.CheckboxSelectMultiple)
+    categories = forms.ModelMultipleChoiceField(
+        label="Categorias",
+        queryset=Category.objects.all(), 
+        widget=forms.CheckboxSelectMultiple)
     class Meta:
         model = Company
         exclude = ["slug", "enabled", "created_at", "user", "thumbnail"]
